@@ -1,0 +1,15 @@
+{
+  "name": "promptlanx",
+  "owner": {
+    "name": "PromptLanx",
+    "url": "https://promptlanx.com"
+  },
+  "description": "PromptLanx plugins for Claude Code.",
+  "plugins": [
+    {
+      "name": "promptlanx",
+      "source": "./plugins/promptlanx",
+      "description": "Blocks prompts that contain API keys, tokens or hard-coded passwords before they are sent to Claude."
+    }
+  ]
+}

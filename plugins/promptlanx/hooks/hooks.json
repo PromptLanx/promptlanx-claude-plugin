@@ -1,0 +1,17 @@
+{
+  "description": "PromptLanx: checks each prompt for API keys and secrets, locally, before it is sent.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/dist/promptlanx-hook.js"],
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

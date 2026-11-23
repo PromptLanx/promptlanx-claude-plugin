@@ -1,0 +1,12 @@
+PromptLanx for Claude Code
+Copyright 2026 PromptLanx
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The detection logic in dist/promptlanx-hook.js (source: src/engine/ in this repository) is
+adapted from the PromptLanx detection engine. Copied and adapted parts: the API-key and secret
+detector specifications, the configurable key-format builder and its settings validation, the
+regex detector runtime with its time budget, and the spec parser.
+
+dist/promptlanx-hook.js has no third-party runtime dependencies. It is bundled with esbuild,
+which is used at build time only and is not included in the output.
