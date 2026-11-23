@@ -8,6 +8,7 @@
     "url": "https://promptlanx.com"
   },
   "homepage": "https://promptlanx.com",
+  "repository": "https://github.com/promptlanx/promptlanx-claude-plugin",
   "license": "Apache-2.0",
   "keywords": [
     "security",

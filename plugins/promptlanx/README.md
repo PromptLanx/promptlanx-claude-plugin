@@ -53,7 +53,7 @@ Requires Claude Code and Node.js 18 or later on your `PATH`.
 From the PromptLanx marketplace in this repository:
 
 ```
-/plugin marketplace add <owner>/<repo>
+/plugin marketplace add promptlanx/promptlanx-claude-plugin
 /plugin install promptlanx@promptlanx
 ```
 
