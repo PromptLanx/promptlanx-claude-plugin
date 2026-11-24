@@ -120,6 +120,10 @@ run (about 0.1 s in total) is Node.js starting up.
   no recognisable format, or written without a label like `password =`, is not detected.
   Unusual but harmless text can occasionally look like a key; switch that detector off if it
   gets in your way.
+- **Claude Code only.** PromptLanx runs in Claude Code sessions on your own computer: the
+  `claude` command in a terminal and local sessions in the Claude desktop app's Code tab. It
+  does not run in the Chat or Cowork tabs, on claude.ai in a browser, in the mobile apps, or in
+  Claude Code sessions that run in the cloud.
 - **Personal data** such as email addresses and phone numbers is not checked in this version.
 - Very old Claude Code versions that do not support `suppressOriginalPrompt` may show your
   prompt again under the block message. It is still not sent to Claude.
