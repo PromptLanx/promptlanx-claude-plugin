@@ -1,4 +1,4 @@
-import { ENV_CUSTOM_KEY_FORMATS, ENV_DISABLED_PROVIDERS, loadConfig } from './config.ts';
+import { ENV_EXTRA_PREFIXES, ENV_DISABLED_PROVIDERS, loadConfig } from './config.ts';
 import { buildDetectors, lineAndColumn, scan } from './scan.ts';
 import type { Finding } from './scan.ts';
 
@@ -101,7 +101,7 @@ export async function main(): Promise<void> {
     // touched, so nothing else in the user's environment (tokens, credentials) is ever accessed.
     output = handle(await readStdin(), {
       [ENV_DISABLED_PROVIDERS]: process.env[ENV_DISABLED_PROVIDERS],
-      [ENV_CUSTOM_KEY_FORMATS]: process.env[ENV_CUSTOM_KEY_FORMATS],
+      [ENV_EXTRA_PREFIXES]: process.env[ENV_EXTRA_PREFIXES],
     });
   } catch (error) {
     output = failOpen(error);

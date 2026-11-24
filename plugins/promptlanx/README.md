@@ -66,14 +66,14 @@ claude --plugin-dir ./plugins/promptlanx
 ## Configuration
 
 Both settings are optional. Set them when Claude Code asks during install, or later with
-`claude plugin configure promptlanx`.
+`/plugin configure promptlanx@promptlanx` in Claude Code.
 
 | Setting | What it does | Example |
 | --- | --- | --- |
-| `disabled_providers` | Built-in key formats **not** to block, separated by commas: `labelled`, `openai`, `anthropic`, `aws`, `github`, `google`, `stripe`, `slack`. Passwords and tokens are always checked. | `slack, google` |
-| `custom_key_formats` | Your own key formats, separated by commas, each written `prefix:min-max`. A key matches when it starts with the prefix and is followed by `min` to `max` letters, digits, `_` or `-`. | `acme_live_:24-40` |
+| `disabled_providers` | Built-in detectors to switch off, separated by commas: `labelled`, `openai`, `anthropic`, `aws`, `github`, `google`, `stripe`, `slack`. The password/secret/token assignment detector always stays on. | `slack, google` |
+| `extra_prefixes` | Your own formats to block, separated by commas, each written `prefix:min-max`. Text matches when it starts with the prefix and is followed by `min` to `max` letters, digits, `_` or `-`. Enter only the prefix, never a real value. | `acme_live_:24-40` |
 
-Rules for custom formats (the same as the PromptLanx dashboard):
+Rules for extra prefixes (the same as the PromptLanx dashboard):
 
 - the prefix is 3 to 40 characters from `A-Z a-z 0-9 _ . -`, treated as plain text;
 - `min` and `max` are whole numbers from 8 to 256, with `min` no larger than `max`;

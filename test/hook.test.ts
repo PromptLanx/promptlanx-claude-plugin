@@ -4,7 +4,7 @@ import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { describe, it } from 'node:test';
 
-import { ENV_CUSTOM_KEY_FORMATS } from '../src/config.ts';
+import { ENV_EXTRA_PREFIXES } from '../src/config.ts';
 import { handle } from '../src/hook.ts';
 import { chars, FAKE_KEYS, hardCodedPassword, hookInput } from './fakes.ts';
 
@@ -71,14 +71,14 @@ describe('hook contract: handle()', () => {
   });
 
   it('still blocks, and warns, when the configuration is invalid', () => {
-    const out = handle(hookInput(openai), { [ENV_CUSTOM_KEY_FORMATS]: 'nope' });
+    const out = handle(hookInput(openai), { [ENV_EXTRA_PREFIXES]: 'nope' });
     assert.equal(out.decision, 'block');
     assert.match(out.systemMessage ?? '', /plugin settings ignored/);
   });
 
   it('blocks a key in a configured custom format', () => {
     const key = `acme_live_${chars(30)}`;
-    const out = handle(hookInput(`deploy ${key}`), { [ENV_CUSTOM_KEY_FORMATS]: 'acme_live_:24-40' });
+    const out = handle(hookInput(`deploy ${key}`), { [ENV_EXTRA_PREFIXES]: 'acme_live_:24-40' });
     assert.equal(out.decision, 'block');
     assert.match(out.reason ?? '', /custom format "acme_live_"/);
     assertNoLeak(JSON.stringify(out), key);

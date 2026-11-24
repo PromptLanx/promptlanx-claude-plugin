@@ -35,7 +35,7 @@ echo "   PASS: blocked before reaching Claude; key not echoed"
 echo "2. Clean prompt"
 "$CLAUDE_BIN" -p --plugin-dir "$PLUGIN" --debug hooks --debug-file "$WORK/clean.log" --output-format json \
   "Reply with exactly the word: pong" > clean.json 2>/dev/null || true
-grep -q 'promptlanx-hook.js.*finished with status 0' clean.log || fail "hook did not run"
+grep -q 'promptlanx.sh.*finished with status 0' clean.log || fail "hook did not run"
 grep -q 'Hook UserPromptSubmit (UserPromptSubmit) success:\\n{}' clean.log || fail "hook did not allow the clean prompt"
 node -e '
   const r = JSON.parse(require("fs").readFileSync("clean.json", "utf8"));

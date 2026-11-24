@@ -6,7 +6,7 @@ import type { KeyDetectionSettings } from './engine/key-detection.ts';
  * exports each one to the hook process as `CLAUDE_PLUGIN_OPTION_<KEY>`.
  */
 export const ENV_DISABLED_PROVIDERS = 'CLAUDE_PLUGIN_OPTION_DISABLED_PROVIDERS';
-export const ENV_CUSTOM_KEY_FORMATS = 'CLAUDE_PLUGIN_OPTION_CUSTOM_KEY_FORMATS';
+export const ENV_EXTRA_PREFIXES = 'CLAUDE_PLUGIN_OPTION_EXTRA_PREFIXES';
 
 export interface LoadedConfig {
   readonly settings: KeyDetectionSettings;
@@ -52,10 +52,10 @@ export function loadConfig(env: NodeJS.ProcessEnv): LoadedConfig {
       );
     }
 
-    const custom = parseList(env[ENV_CUSTOM_KEY_FORMATS]).map((entry, index) => {
+    const custom = parseList(env[ENV_EXTRA_PREFIXES]).map((entry, index) => {
       const match = CUSTOM_ENTRY.exec(entry);
       if (match === null) {
-        throw new ConfigError(`custom_key_formats entry ${index + 1} must look like prefix:min-max`);
+        throw new ConfigError(`extra_prefixes entry ${index + 1} must look like prefix:min-max`);
       }
       const [, prefix = '', min = '', max = ''] = match;
       return { name: prefix, prefix, min_length: Number(min), max_length: Number(max) };

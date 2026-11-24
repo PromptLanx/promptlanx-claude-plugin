@@ -130,7 +130,7 @@ function customKeySource(format) {
 
 // src/config.ts
 var ENV_DISABLED_PROVIDERS = "CLAUDE_PLUGIN_OPTION_DISABLED_PROVIDERS";
-var ENV_CUSTOM_KEY_FORMATS = "CLAUDE_PLUGIN_OPTION_CUSTOM_KEY_FORMATS";
+var ENV_EXTRA_PREFIXES = "CLAUDE_PLUGIN_OPTION_EXTRA_PREFIXES";
 function parseList(raw) {
   if (raw === void 0) return [];
   const text = raw.trim();
@@ -156,10 +156,10 @@ function loadConfig(env) {
         `disabled_providers contains an unknown provider ID (allowed: ${KEY_PROVIDER_IDS.join(", ")})`
       );
     }
-    const custom = parseList(env[ENV_CUSTOM_KEY_FORMATS]).map((entry, index) => {
+    const custom = parseList(env[ENV_EXTRA_PREFIXES]).map((entry, index) => {
       const match = CUSTOM_ENTRY.exec(entry);
       if (match === null) {
-        throw new ConfigError(`custom_key_formats entry ${index + 1} must look like prefix:min-max`);
+        throw new ConfigError(`extra_prefixes entry ${index + 1} must look like prefix:min-max`);
       }
       const [, prefix = "", min = "", max = ""] = match;
       return { name: prefix, prefix, min_length: Number(min), max_length: Number(max) };
@@ -541,7 +541,7 @@ async function main() {
   try {
     output = handle(await readStdin(), {
       [ENV_DISABLED_PROVIDERS]: process.env[ENV_DISABLED_PROVIDERS],
-      [ENV_CUSTOM_KEY_FORMATS]: process.env[ENV_CUSTOM_KEY_FORMATS]
+      [ENV_EXTRA_PREFIXES]: process.env[ENV_EXTRA_PREFIXES]
     });
   } catch (error) {
     output = failOpen(error);

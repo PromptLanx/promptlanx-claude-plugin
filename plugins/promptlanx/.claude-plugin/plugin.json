@@ -1,7 +1,7 @@
 {
   "name": "promptlanx",
   "displayName": "PromptLanx",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Blocks prompts that contain API keys, tokens or hard-coded passwords before they are sent to Claude. Runs locally: no network calls, no storage, no logging of prompt text.",
   "author": {
     "name": "PromptLanx",
@@ -21,14 +21,14 @@
   "userConfig": {
     "disabled_providers": {
       "type": "string",
-      "title": "Key formats to switch off",
-      "description": "Built-in key formats PromptLanx should NOT block, separated by commas. Any of: labelled, openai, anthropic, aws, github, google, stripe, slack. Leave empty to check them all. Passwords and tokens (password = \u2026) are always checked.",
+      "title": "Detectors to switch off",
+      "description": "Names of built-in detectors PromptLanx should skip, separated by commas. Any of: labelled, openai, anthropic, aws, github, google, stripe, slack. Leave empty to keep all of them on. The generic assignment detector always stays on.",
       "default": ""
     },
-    "custom_key_formats": {
+    "extra_prefixes": {
       "type": "string",
-      "title": "Your own key formats",
-      "description": "Extra key formats to block, separated by commas, each written prefix:min-max. Example: acme_live_:24-40 blocks keys starting with acme_live_ followed by 24 to 40 letters, digits, _ or -. Prefix: 3-40 of A-Z a-z 0-9 _ . -; lengths 8-256; at most 20 formats.",
+      "title": "Extra prefixes to detect",
+      "description": "Extra patterns to detect, separated by commas, each written prefix:min-max. Example: acme_live_:24-40 matches text that starts with acme_live_ followed by 24 to 40 letters, digits, _ or -. Prefix: 3-40 of A-Z a-z 0-9 _ . -; lengths 8-256; at most 20 entries. Enter only the prefix, never a real value.",
       "default": ""
     }
   }

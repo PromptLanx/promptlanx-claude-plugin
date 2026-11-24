@@ -6,8 +6,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node",
-            "args": ["${CLAUDE_PLUGIN_ROOT}/dist/promptlanx-hook.js"],
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/promptlanx.sh",
+            "args": [],
             "timeout": 10
           }
         ]
