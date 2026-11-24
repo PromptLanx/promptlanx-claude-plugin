@@ -539,7 +539,10 @@ function readStdin() {
 async function main() {
   let output;
   try {
-    output = handle(await readStdin(), process.env);
+    output = handle(await readStdin(), {
+      [ENV_DISABLED_PROVIDERS]: process.env[ENV_DISABLED_PROVIDERS],
+      [ENV_CUSTOM_KEY_FORMATS]: process.env[ENV_CUSTOM_KEY_FORMATS]
+    });
   } catch (error) {
     output = failOpen(error);
   }

@@ -1,4 +1,4 @@
-import { loadConfig } from './config.ts';
+import { ENV_CUSTOM_KEY_FORMATS, ENV_DISABLED_PROVIDERS, loadConfig } from './config.ts';
 import { buildDetectors, lineAndColumn, scan } from './scan.ts';
 import type { Finding } from './scan.ts';
 
@@ -97,7 +97,12 @@ function readStdin(): Promise<string> {
 export async function main(): Promise<void> {
   let output: HookOutput;
   try {
-    output = handle(await readStdin(), process.env);
+    // Only the plugin's own two settings are read, by name. No other environment variable is
+    // touched, so nothing else in the user's environment (tokens, credentials) is ever accessed.
+    output = handle(await readStdin(), {
+      [ENV_DISABLED_PROVIDERS]: process.env[ENV_DISABLED_PROVIDERS],
+      [ENV_CUSTOM_KEY_FORMATS]: process.env[ENV_CUSTOM_KEY_FORMATS],
+    });
   } catch (error) {
     output = failOpen(error);
   }

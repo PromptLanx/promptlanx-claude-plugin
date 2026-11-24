@@ -31,8 +31,8 @@ data-protection product.
 | your own formats | any prefix you add (see [Configuration](#configuration)) |
 
 Provider keys must look random (an unbroken run of letters and digits, including a digit), so
-ordinary text such as `sk-learn`, URL slugs like `sk-reference-guide-for-new-users`, or
-`api_key = os.environ["API_KEY"]` is not blocked.
+ordinary text such as `sk-learn`, URL slugs like `sk-reference-guide-for-new-users`, or code
+that names a key without containing it is not blocked.
 
 ## What it never does
 
